@@ -1,14 +1,14 @@
 package config
 
 import (
-	"fmt"
+	// "fmt"
 	"os"
 	"time"
 
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 )
 
 // memanggil konfig pada env file
@@ -18,9 +18,9 @@ func Config(key string) string {
 	// if err != nil {
 	// 	fmt.Println("Error loading file env")
 	// }
-	if err := godotenv.Load(); err != nil {
-		fmt.Println(".env not found, using environment variables")
-	}
+	// if err := godotenv.Load(); err != nil {
+	// 	fmt.Println(".env not found, using environment variables")
+	// }
 
 	return os.Getenv(key)
 }

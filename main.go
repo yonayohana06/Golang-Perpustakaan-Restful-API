@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	conf.LoadEnv()
+	// conf.LoadEnv()
 	db := conf.MySQLConn()
 	// database.Migrate()
 	// database.Seeder(db)

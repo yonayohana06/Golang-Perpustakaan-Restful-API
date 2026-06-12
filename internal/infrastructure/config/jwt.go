@@ -10,16 +10,16 @@ import (
 )
 
 type JwtConfig struct {
-	Secret string
-	Expires int
-	RefreshSecret string
+	Secret         string
+	Expires        int
+	RefreshSecret  string
 	RefreshExpires int
 }
 
 func GetJwtConfig() JwtConfig {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Println("Error loading .env file")
 	}
 
 	jwtExpires, err := strconv.Atoi(os.Getenv("JWT_EXPIRES"))
@@ -33,9 +33,9 @@ func GetJwtConfig() JwtConfig {
 	}
 
 	return JwtConfig{
-		Secret: os.Getenv("JWT_SECRET"),
-		Expires: jwtExpires,
-		RefreshSecret: os.Getenv("JWT_REFRESH_SECRET"),
+		Secret:         os.Getenv("JWT_SECRET"),
+		Expires:        jwtExpires,
+		RefreshSecret:  os.Getenv("JWT_REFRESH_SECRET"),
 		RefreshExpires: jwtRefreshExpires,
 	}
 }

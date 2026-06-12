@@ -1,23 +1,23 @@
 package config
 
 import (
-	// "fmt"
+	"fmt"
 	"os"
 	"time"
 
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
-	// "github.com/joho/godotenv"
+	"github.com/joho/godotenv"
 )
 
 // memanggil konfig pada env file
 func Config(key string) string {
-	// err := godotenv.Load(".env")
+	err := godotenv.Load(".env")
 
-	// if err != nil {
-	// 	fmt.Println("Error loading file env")
-	// }
+	if err != nil {
+		fmt.Println("Error loading file env")
+	}
 
 	return os.Getenv(key)
 }

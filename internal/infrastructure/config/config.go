@@ -13,10 +13,13 @@ import (
 
 // memanggil konfig pada env file
 func Config(key string) string {
-	err := godotenv.Load(".env")
+	// err := godotenv.Load(".env")
 
-	if err != nil {
-		fmt.Println("Error loading file env")
+	// if err != nil {
+	// 	fmt.Println("Error loading file env")
+	// }
+	if err := godotenv.Load(); err != nil {
+		fmt.Println(".env not found, using environment variables")
 	}
 
 	return os.Getenv(key)

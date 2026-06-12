@@ -5,8 +5,7 @@ import (
 	"os"
 	"strconv"
 	"time"
-
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 )
 
 type JwtConfig struct {
@@ -17,10 +16,10 @@ type JwtConfig struct {
 }
 
 func GetJwtConfig() JwtConfig {
-	err := godotenv.Load()
-	if err != nil {
-		log.Println("Error loading .env file")
-	}
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	log.Println("Error loading .env file")
+	// }
 
 	jwtExpires, err := strconv.Atoi(os.Getenv("JWT_EXPIRES"))
 	if err != nil {

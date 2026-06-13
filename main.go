@@ -1,7 +1,7 @@
 package main
 
 import (
-	"os"
+	// "os"
 
 	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http"
 
@@ -93,14 +93,14 @@ func main() {
 		jwtAuthMiddleware,
 	)
 
-	port := os.Getenv("PORT")
+	// port := os.Getenv("PORT")
 
-	if port == "" {
-		port = "8001"
-	}
+	// if port == "" {
+	// 	port = "8001"
+	// }
 
-	app.Listen(":" + port)
+	// app.Listen(":" + port)
 
-	// app.Listen(":8001")
+	app.Listen(":8001")
 
 }

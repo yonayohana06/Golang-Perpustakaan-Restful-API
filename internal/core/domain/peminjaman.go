@@ -18,7 +18,7 @@ type Peminjaman struct {
 	// gorm.Model
 	IDPeminjaman string  `gorm:"primary_key;size:26;not null;" json:"id"`
 	IDAnggota    string  `gorm:"column:id_anggota;size:26" json:"id_anggota"`
-	Anggota      Anggota `gorm:"foreignKey:IDAnggota" json:"anggota"`
+	Anggota      Anggota `gorm:"foreignKey:IDAnggota;references:IDAnggota" json:"anggota"`
 
 	TglPinjam     time.Time `json:"tgl_pinjam"`
 	TglHrsKembali time.Time `json:"tgl_kembali"`

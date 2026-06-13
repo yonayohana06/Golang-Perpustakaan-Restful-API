@@ -1,12 +1,13 @@
 package http
 
 import (
-	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/buku"
-	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/user"
-	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/auth"
-	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/peminjaman"
-	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/denda"
 	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/middleware"
+	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/anggota"
+	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/auth"
+	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/buku"
+	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/denda"
+	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/peminjaman"
+	"github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/user"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -16,6 +17,7 @@ func RegisterPath(f *fiber.App,
 	authCon *auth.Controller,
 	peminjamanCon *peminjaman.Controller,
 	dendaCon *denda.Controller,
+	anggotaHan *anggota.AnggotaHandler,
 	jwtAuth *middleware.JWTAuthMiddleware) {
 
 	route := f.Group("/api")
@@ -92,4 +94,8 @@ func RegisterPath(f *fiber.App,
 	dendaRoutes.Put("update", dendaCon.UpdateDenda)
 	dendaRoutes.Delete("delete", dendaCon.DeleteDenda)
 	// end denda area
+
+	// denda area
+	anggotaRoutes := adminRoutes.Group("/anggota")
+	anggotaRoutes.Get("/", anggotaHan.GetAllAnggota)
 }

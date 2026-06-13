@@ -25,6 +25,10 @@ import (
 	dendaController "github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/denda"
 	dendaRepository "github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/repository/mysql/denda"
 
+	anggotaUseCase "github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/application/usecase/anggota"
+	anggotaHandler "github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/http/v1/anggota"
+	anggotaRepository "github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/repository/mysql/anggota"
+
 	conf "github.com/afrizal423/Golang-Perpustakaan-Restful-API/internal/infrastructure/config"
 	"github.com/gofiber/fiber/v2"
 
@@ -67,6 +71,11 @@ func main() {
 	dendaServices := dendaService.NewDendaService(dendaRepo)
 	dendaCon := dendaController.NewDendaController(dendaServices)
 
+	// 1. Inisiasi (Dependency Injection) - Anggota
+	anggotaRepo := anggotaRepository.NewAnggotaRepository(db) // db adalah instance *gorm.DB Anda
+	anggotaUC := anggotaUseCase.NewAnggotaUseCase(anggotaRepo)
+	anggotaHan := anggotaHandler.NewAnggotaHandler(anggotaUC)
+
 	// Middleware
 	jwtAuthMiddleware := middleware.NewJWTAuthMiddleware(jwtUtility, jwtConfig)
 
@@ -80,6 +89,7 @@ func main() {
 		authController,
 		peminjamanCon,
 		dendaCon,
+		anggotaHan,
 		jwtAuthMiddleware,
 	)
 
